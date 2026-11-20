@@ -1,0 +1,11 @@
+{
+  "name": "Threads Video Studio PRO",
+  "short_name": "Threads Studio",
+  "description": "Tạo video ngắn có giọng đọc và phụ đề tiếng Việt",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090b12",
+  "theme_color": "#090b12",
+  "orientation": "portrait",
+  "icons": [{"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

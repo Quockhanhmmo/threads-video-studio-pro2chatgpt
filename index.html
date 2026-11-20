@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b12"><meta name="description" content="Tạo video Gen Z từ một link Threads.">
+  <link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css">
+  <title>Threads Studio · GenZ Mode</title>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark">CM</span><span>THREADS <b>STUDIO</b></span></a><span class="online"><i></i> GENZ MODE</span></header>
+<main class="wrap">
+  <section class="hero"><div class="eyebrow">THREADS → SHORT VIDEO</div><h1>Một link Threads.<br><span>Một video cuốn.</span></h1><p>Dán link topic, lấy nội dung có thể truy cập và tạo lời thoại tiếng Việt kiểu Gen Z.</p><div class="steps"><span>01 Dán link</span><span>02 Viết kịch bản</span><span>03 Tạo video</span></div></section>
+
+  <section class="panel" id="topicPanel">
+    <div class="section-head"><div><small>BƯỚC 01</small><h2>Link topic Threads</h2></div><span class="pill accent">Chỉ cần 1 link</span></div>
+    <label for="threadUrl">Dán link bài viết</label><div class="input-row"><input id="threadUrl" type="url" placeholder="https://www.threads.com/@.../post/..." autocomplete="url"><button id="analyzeThread" class="btn primary">Phân tích ↗</button></div>
+    <div class="hint">Chỉ xử lý nội dung công khai mà máy chủ đọc được. Không yêu cầu mật khẩu hoặc đăng nhập tài khoản.</div>
+    <div id="topicStatus" class="status" role="status" aria-live="polite">Chưa có topic. Dán link rồi bấm Phân tích.</div>
+    <div id="topicResult" class="topic-result" hidden><div class="topic-meta"><b id="topicAuthor">Bài viết Threads</b><span id="topicStats"></span></div><p id="topicText"></p><a id="topicOpen" target="_blank" rel="noopener">Mở bài viết gốc ↗</a></div>
+  </section>
+
+  <section class="panel" id="scriptPanel">
+    <div class="section-head"><div><small>BƯỚC 02</small><h2>Kịch bản Gen Z</h2></div><span class="pill">Có thể sửa</span></div>
+    <div class="grid2"><div><label for="tone">Phong cách nói</label><select id="tone"><option value="genz">Gen Z tự nhiên · hài vừa đủ</option><option value="funny">Lầy lội · bắt trend</option><option value="story">Kể chuyện · cuốn từ đầu</option><option value="neutral">Trung tính · dễ nghe</option></select></div><div><label for="duration">Độ dài video</label><select id="duration"><option value="short">30–45 giây</option><option value="medium" selected>45–60 giây</option><option value="long">60–90 giây</option></select></div></div>
+    <button id="generateScript" class="btn secondary full">✦ Viết kịch bản từ topic</button>
+    <label for="script">Lời thoại sẽ đọc</label><textarea id="script" rows="9" maxlength="5000" placeholder="Kịch bản sẽ xuất hiện ở đây sau khi phân tích topic..."></textarea><div class="between"><span id="charCount">0 / 5000 ký tự</span><button id="cleanText" class="text-btn">Làm sạch</button></div>
+    <details class="optional"><summary>Thêm bình luận thủ công (nếu Threads không tải được)</summary><p>Dán bình luận bạn muốn đưa vào video. Công cụ không tự bịa bình luận khi bài viết không cung cấp dữ liệu.</p><textarea id="comments" rows="4" placeholder="Mỗi bình luận một dòng..."></textarea></details>
+  </section>
+
+  <section class="panel"><div class="section-head"><div><small>BƯỚC 03</small><h2>Giọng đọc & hình nền</h2></div><span class="pill">Tùy chỉnh</span></div>
+    <div class="grid2"><div><label for="voice">Giọng đọc</label><select id="voice"><option value="vi-VN-HoaiMyNeural">Hoài My · Nữ</option><option value="vi-VN-NamMinhNeural">Nam Minh · Nam</option></select></div><div><label for="ratio">Tỷ lệ video</label><select id="ratio"><option value="9:16">9:16 · TikTok</option><option value="1:1">1:1 · Vuông</option><option value="16:9">16:9 · YouTube</option></select></div></div>
+    <label for="background">Video nền <em>MP4 / WebM / MOV · tối đa 100 MB</em></label><input id="background" type="file" accept="video/mp4,video/webm,video/quicktime"><div id="bgInfo" class="file-info">Chưa chọn video nền</div>
+    <div class="grid2"><div><label for="fontSize">Cỡ phụ đề</label><select id="fontSize"><option value="medium">Vừa</option><option value="large">Lớn</option><option value="small">Nhỏ</option></select></div><div><label for="subtitlePosition">Vị trí phụ đề</label><select id="subtitlePosition"><option value="bottom">Phía dưới</option><option value="middle">Ở giữa</option></select></div></div>
+  </section>
+  <section class="panel"><div class="section-head"><div><small>BƯỚC 04</small><h2>Xuất video</h2></div><span class="pill accent">MP4 · 1080p</span></div><div class="actions"><button id="makeVoice" class="btn secondary">① Nghe thử giọng</button><button id="render" class="btn primary">② Tạo video MP4 →</button></div><audio id="voicePreview" controls hidden></audio><div id="status" class="status" role="status" aria-live="polite">Sẵn sàng. Hãy phân tích topic và tạo kịch bản.</div><div id="progressWrap" class="progress-wrap" hidden><div id="progressBar"></div></div><a id="download" class="download" hidden>↓ Tải video MP4</a></section>
+  <footer><b>THREADS STUDIO · GENZ MODE</b><span>Không lưu nội dung sau khi xử lý. Chỉ dùng nội dung bạn có quyền sử dụng.</span></footer>
+</main><script src="/app.js" defer></script></body></html>
